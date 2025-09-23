@@ -33,7 +33,6 @@ jobs:
       - name: Check if GHCR package exists (any tag)
         id: pkg
         env:
-          GH_TOKEN: ${{ github.token }} # used by gh
           OWNER: ${{ github.repository_owner }}
           PKG: ${{ steps.vars.outputs.pkg_lc }}
         run: |
