@@ -45,6 +45,12 @@ jobs:
             echo "exists=false" >> "$GITHUB_OUTPUT"
           fi
 
+      - name: DEBUG
+        env:
+          tmp: ${{  steps.pkg.outputs.exists }}
+        run: |
+          echo "$tmp"
+
       - name: Cleanup untagged images
         uses: actions/delete-package-versions@v5
         if: steps.pkg.outputs.exists == 'true'
@@ -56,8 +62,6 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v4
-        env:
-          TEST: ${{ steps.pkg.outputs.exists }}
         with:
           fetch-depth: 0
 
