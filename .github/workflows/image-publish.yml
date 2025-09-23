@@ -47,6 +47,8 @@ jobs:
 
       - name: Cleanup untagged images
         uses: actions/delete-package-versions@v5
+        env:
+          TEST: ${{ steps.pkg.outputs.exists }}
         if: steps.pkg.outputs.exists == 'true'
         with:
           package-name: ${{ steps.vars.outputs.pkg_lc }}
